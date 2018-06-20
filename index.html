@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Page Title</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/absenzenformular.css" />
+</head>
+
+<body>
+    
+<header>Titel</header>
+<aside>Sidebar</aside>
+
+<main>
+
+<div class="absenzenformular">
+    <!-- Fächer-Input -->
+    <div class="faecher-input">
+        <!-- inputfield -->
+        <div class="inputfield">
+            <label>Faecher</label>
+            <input list="fächer" name="fach">
+            <datalist id="fächer">
+                <option value="Deutsch">
+                <option value="Physik">
+                <option value="Sport">
+            </datalist>
+        </div>
+        <input type="button" value="+" id="plusbutton">
+    </div>
+
+    <!-- Anzahl lektionen-->
+    <div class="inputfield">
+        <label>Anzahl Lektionen</label>
+        <input type="text" id="lektionenanzahl">
+    </div>
+
+    <!-- Begründung -->
+    <div class="inputfield">
+        <label>Begruendung</label>
+        <textarea id="begruendung" cols="30" rows="1"></textarea>
+    </div>
+
+    <!-- Datum -->
+    <div class="inputfield" >
+        <label>Datum</label>
+        <input type="date" id="date">
+    </div>
+
+    <!-- Absenden -->
+    <input type="button" value="Absenden" id="absenden">
+
+</div>
+
+</main>
+
+<footer><div>Hannes Eybl<br>2018</div></footer>
+
+</body>
+
+</html>
