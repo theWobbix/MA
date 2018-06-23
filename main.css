@@ -1,35 +1,87 @@
 body{
-    margin: 0%;
+    margin: 0;
     height: 100%;
-
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(12, 1fr);
 
     font-family: Arial, Helvetica, sans-serif;
     font-size: 25px;
+
+    overflow-x: hidden;
 }
 
 html {
     height: 100%;
 }
 
-
 header{
     background: rgb(185, 241, 80);
 
+    overflow: hidden;
 
-    grid-column: span 12;
-    grid-row: span 1;
+    height: 80px;
 }
 
-aside{
-    background: rgb(80, 217, 241);
+header a{
+    float: left;
+    
+    display: block;
 
+    color: rgb(0, 119, 89);
 
+    text-align: left;
 
-    grid-column: span 2;
-    grid-row: span 10;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    padding-left: 40px;
+    padding-right: 100px;
+
+    width: 110px;
+
+    /*
+    padding-left + padding-right + width = 250px (breite der navbar)
+    bzw. 40px + 100px + 110px
+    */
+
+    text-decoration: none;
+    font-size: 25px;
+
+    transition: 0.5s;
+}
+
+header a:hover{
+    color: rgb(124, 35, 0);
+}
+
+.side-nav{
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+
+    background-color: rgb(54, 255, 205);
+    box-shadow: 1px 5px 7px 1px rgba(24, 24, 24, 0.767);
+
+    overflow-x: hidden;
+    padding-top: 0px;
+
+    transition: 0.5s;
+}
+
+.btn-close{
+    font-size: 36px;
+    padding-bottom: 19px;
+    padding-top: 19px;
+}
+
+/* #active für die seite die grad offen ist */
+.side-nav #active{
+    box-shadow: 0px 0px 8px 1px rgba(24, 24, 24, 0.2);
+    color: rgb(95, 27, 0);
+
+    /* Link deaktivieren */
+    cursor: default;
+    pointer-events: none;
 }
 
 main{
@@ -39,31 +91,7 @@ main{
     display: flex;
     flex-direction: column;
 
-    grid-column: span 10;
-    grid-row: span 10;
-}
-
-.absenzenformular{
-    margin-right: 50%;
-    margin-left: auto;
-    margin-top: 2%;
-
-    width: 360px;
-       
-    display: flex;
-    justify-content: right;
-    flex-direction: column;
-}
-
-.inputfield{
-    display: flex;
-    flex-direction: column;
-
-    margin-bottom: 30px;
-}
-
-.inputfield label{
-    margin-bottom: 15px;
+    transition: 0.5s;
 }
 
 footer{
@@ -72,10 +100,10 @@ footer{
 
     box-shadow: 0px -1px 7px 1px rgba(24, 24, 24, 0.767);
 
+    height: 80px;
+
     display: flex;
 
-    grid-column: span 12;
-    grid-row: span 1;
 }
 
 footer div{
@@ -83,3 +111,17 @@ footer div{
     text-align: center;
 }
 
+/*  Eigenes CSS für den Knopf der die Sidebar öffnet
+    Würde sonst dem CSS der Links in der Sidebar unterliegen */
+#open-slide a{
+    padding-right: 30px;
+    height: 30px;
+    width: 30px;
+}
+
+@media(min-width:568px){
+    .open-slide{display:none}
+    .btn-close{display:none}
+    .side-nav{width:250px;margin-top:80px;}
+    .btn-close{font-size: 35px;}
+}

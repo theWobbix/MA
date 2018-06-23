@@ -2,11 +2,34 @@
     margin-right: auto;
     margin-left: auto;
     margin-top: 2%;
+    margin-bottom: 2%;
 
     width: 360px;
+
+
+    /* 
+    DO TO: Breite des Formulars via Mediaquery für Handys anpassen
+    */
        
     display: flex;
     flex-direction: column;
+}
+
+.faecher-input{
+    width: 100%;
+}
+
+#fachTable{
+    width: 100%;
+}
+
+#zelle{
+    transition: 0.4s;
+}
+
+#nichtfaecher-input{
+    transition: 0.4s;
+    width: 100%;
 }
 
 .inputfield{
@@ -23,7 +46,23 @@
 .inputfield input{
     height: 53px;
     font-size: 25px;
+
+    background-color: rgb(140, 72, 218);
+
+    border-color: rgb(106, 20, 204);
+    border-bottom-width: 3px;
+    border-top-width: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+
+    transition: 0.3s;
 }
+
+.inputfield input:focus{
+    border-color: rgb(147, 105, 196);
+    box-shadow: inset 0px 0px 3px 0px rgba(24, 24, 24, 0.767);
+}
+
 
 #plusbutton{
     height: 75px;
@@ -33,13 +72,20 @@
     float: right;
 
     background: rgb(211, 0, 0);
+    box-shadow: 2px 5px 10px 1px rgba(24,24,24,0.5);
 
     border-width: 0;
     
     font-size: 50px;
     color: rgb(255, 255, 255);
 
+    transition: 0.4s;    
+
     text-align: center;
+}
+
+#plusbutton:hover{
+    box-shadow: 3px 6px 11px 2px rgba(24,24,24,0.4);
 }
 
 #date{
@@ -50,6 +96,21 @@
 #begruendung{
     height: 53px;
     font-size: 25px;
+
+    background-color: rgb(140, 72, 218);
+
+    border-color: rgb(106, 20, 204);
+    border-bottom-width: 3px;
+    border-top-width: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+
+    transition: 0.3s;
+}
+
+#begruendung:focus{
+    border-color: rgb(147, 105, 196);
+    box-shadow: inset 0px 0px 3px 0px rgba(24, 24, 24, 0.767);
 }
 
 #lektionenanzahl{
@@ -58,7 +119,18 @@
 
 #absenden{
     height: 53px;
+    width: 100%;
     font-size: 30px;
     background: rgb(98, 157, 247);
     border-width: 0;
+    box-shadow: 1px 4px 5px 1px rgba(24,24,24,0.5);
+    transition: 0.7s;
 }
+
+#absenden:hover{
+    background: rgb(111, 167, 250); 
+    box-shadow: 2px 5px 6px 2px rgba(24,24,24,0.4); 
+}
+
+
+

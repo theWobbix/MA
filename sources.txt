@@ -1,2 +1,5 @@
+#Dynamic Form
 http://techstream.org/Web-Development/PHP/Dynamic-Form-Processing-with-PHP
 
+#Responsive sidebar
+https://www.youtube.com/watch?v=wpGNFGqNfdU
