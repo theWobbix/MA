@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>MA-Login</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="css/login.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+</head>
+
+<body>  
+    <div class="loginformular">
+
+        <label id="titel">Anmeldung</label>
+
+        <!-- Benutzername -->
+        <div class="inputfield">
+            <label>Benutzername</label>
+            <input type="text" id="username" placeholder="Benutzername">
+        </div>
+
+        <!-- Passwort -->
+        <div class="inputfield">
+            <label>Passwort</label>
+            <input type="password" id="PW" placeholder="Passwort">
+        </div>
+
+        <!-- Angemeldet bleiben -->
+        <div id="loginCookie">
+            <input type="checkbox" value="0" id="loginCookieBtn">
+            <label for="loginCookieBtn" id="loginCookieBtnVisible"></label> <!-- Dieses Label ersetzt den unsichtbaren Checkbutton, da es im gegensatz zum Checkbutton gestyled werden kann -->
+            <label for="loginCookieBtn">Angemeldet bleiben</label>
+        </div>
+
+        <!-- Anmeldungs-Button -->
+        <input type="button" value="Anmelden" id="anmelden">
+
+    </div>
+</body>
+
+</html>

@@ -12,6 +12,10 @@ function addRow(){
         neueZelle.innerHTML = table.rows[0].cells[0].innerHTML;
 
         //Scrollt runter damit das neue Feld direkt auf der höhe des Cursors ist
-        window.scrollBy(0, 135);
+        window.scrollBy(0, 139);
     }
 }
+
+//Code von: http://techstream.org/Web-Development/PHP/Dynamic-Form-Processing-with-PHP
+
+

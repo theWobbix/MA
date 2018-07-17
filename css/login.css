@@ -1,0 +1,198 @@
+body{
+    margin: 0;
+    height: 100%;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+
+    overflow-x: hidden;
+
+    /*
+    Da die Anmeldungs-Site keinen Footer und Header hat,
+    wird das CSS für den main-Bereich für die ganze Seite übernommen
+    */
+
+    background: rgb(155, 80, 241);
+
+    /* Dispaly propertys */
+    display: flex;
+    flex-direction: column;
+}
+
+html {
+    height: 100%;
+}
+
+.loginformular{
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+
+    padding-right: 2%;
+    padding-left: 2%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+
+    width: 360px;
+
+    display: flex;
+    flex-direction: column;
+
+    box-shadow: 1px 4px 6px 2px rgba(24,24,24,0.4);
+    background: rgb(160, 85, 245);
+}
+
+#titel{
+    font-size: 30px;
+
+    margin-bottom: 35px;
+}
+
+.inputfield{
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 30px;
+}
+
+.inputfield label{
+    margin-bottom: 10px;
+}
+
+.inputfield input{
+    height: 53px;
+    font-size: 25px;
+
+    background-color: rgb(140, 72, 218);
+
+    border-color: rgb(106, 20, 204);
+    border-bottom-width: 3px;
+    border-top-width: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+
+    transition: 0.3s;    
+}
+
+.inputfield input:focus{
+    border-color: rgb(147, 105, 196);
+    box-shadow: inset 0px 0px 3px 0px rgba(24, 24, 24, 0.767);
+}
+
+/* #loginCookie = Checkbox "Angemeldet bleiben" */
+#loginCookie{
+    display: flex;
+    flex-direction: row;
+
+    margin-bottom: 25px;
+
+    transform: translateX(-13px);
+}
+
+/* Tatsächliche Checkbox unsichtbar, da nicht stylebar */
+#loginCookieBtn{
+    opacity: 0;
+    padding: 0;
+    margin: 0;
+}
+
+/* #loginCookieBtnVisible = ein Label, welches also Checkbox gestyled ist und Klickbar ist */
+#loginCookieBtnVisible{
+    cursor: pointer;
+
+    position: relative;
+
+    width: 25px;
+    height: 25px;
+
+    margin-right: 10px;
+}
+
+/* #loginCookieBtnVisible::before = Die Box ansich */
+#loginCookieBtnVisible::before{
+    content: "";
+    display: inline-block;
+
+    position: absolute;
+
+    width: 25px;
+    height: 25px;
+
+    background: rgb(140, 72, 218);
+
+    border: 1px solid rgb(123, 63, 190);
+}
+
+/* #loginCookieBtnVisible::after = Das häkchen, erst durch #loginCookieBtn:checked + :after sichtbar gemacht */
+#loginCookieBtnVisible::after{
+    opacity: 0;
+    content: "";
+    display: inline-block;
+
+    position: absolute;
+    left: 5px;
+    top: 6px;
+
+    height: 8px;
+    width: 15px;
+
+
+    border-left: 3px solid;
+    border-bottom: 3px solid;
+    border-color: rgb(62, 11, 119);
+    transform: rotate(-45deg);
+
+    transition: 0.3s;
+}
+
+#loginCookieBtn:hover + :after{
+    opacity: 0.1;
+}
+
+#loginCookieBtn:focus + :before{
+    border: 2px solid rgb(123, 63, 190);
+    border-radius: 2px; 
+}
+
+#loginCookieBtn:checked + :after{
+    opacity: 1;
+}
+
+#anmelden{
+    height: 53px;
+    width: 100%;
+    font-size: 30px;
+    background: rgb(140, 72, 218);
+    border-width: 0;
+    box-shadow: 1px 4px 5px 1px rgba(24,24,24,0.5);
+    transition: 0.3s;
+}
+
+#anmelden:hover{
+    background: rgb(153, 82, 221); 
+    box-shadow: 2px 5px 6px 2px rgba(24,24,24,0.4); 
+}
+
+/*  
+Breite des Formulars an Handys angepasst.
+Breite in Prozent angegeben, damit es besser an alle
+möglichen zukünftigen Bildschirme angepasst ist.
+*/
+@media(max-width:568px){
+    .loginformular{
+        padding: 0;
+
+        width: 94%;
+        margin-left: 3%;
+        margin-right: 3%;
+        margin-top: 15%;
+
+        box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
+        background: rgb(155, 80, 241);
+    }
+}
+
+/* Horizontale ausrichtung für Handys ist nicht unterstützt und müsste genau hier
+mit einer Meidaquery (@media(...)) eingefügt werden. Da dies aber unverhältnismässig wenig
+genutzt werden würde, lasse ich bewusst die Unterstützung für dieses Bildschirmformat aus. */
