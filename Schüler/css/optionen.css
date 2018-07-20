@@ -1,0 +1,136 @@
+.optionen{
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+
+    width: 360px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.option{
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 30px;
+}
+
+.opt_titel{
+    margin-bottom: 20px;
+
+    font-size: 26px;
+}
+
+#opt_passwort{
+    display: flex;
+    flex-direction: column;
+
+    /* border-bottom-style: solid;
+    border-bottom-width: 4px;
+    border-color: brown; */
+}
+
+.passwort_ändern{
+    display: flex;
+    flex-direction: column;
+}
+
+#form_passwort_ändern{
+    height: 0;
+    overflow: hidden;
+    
+    transition: 0.4s;
+}
+
+.inputfield{
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 30px;
+}
+
+.inputfield label{
+    margin-bottom: 15px;
+}
+
+.inputfield input{
+    height: 53px;
+    font-size: 25px;
+
+    background-color: rgb(140, 72, 218);
+
+    border-color: rgb(106, 20, 204);
+    border-bottom-width: 3px;
+    border-top-width: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+
+    transition: 0.3s;
+}
+
+.inputfield input:focus{
+    border-color: rgb(147, 105, 196);
+    box-shadow: inset 0px 0px 3px 0px rgba(24, 24, 24, 0.767);
+}
+
+.btn_open{
+    height: 53px;
+    width: 100%;
+
+    margin-bottom: 20px;
+
+    font-size: 30px;
+
+    background: rgb(98, 157, 247);
+
+    border-width: 0;
+ 
+    transition: 0.5s;
+}
+
+.btn_open:hover{
+    background: rgb(111, 167, 250); 
+    box-shadow: 2px 2px 3px 1px rgba(24,24,24,0.4); 
+}
+
+.btn_big{
+    height: 53px;
+    width: 100%;
+
+    margin-bottom: 20px;
+
+    font-size: 30px;
+
+    background: rgb(98, 157, 247);
+
+    border-width: 0;
+
+    box-shadow: 1px 4px 5px 1px rgba(24,24,24,0.5);
+
+    transition: 0.5s;
+}
+
+.btn_big:hover{
+    background: rgb(111, 167, 250); 
+    box-shadow: 2px 5px 6px 2px rgba(24,24,24,0.4); 
+}
+
+/*  
+Breite des Formulars an Handys angepasst.
+Breite in Prozent angegeben, damit es besser an alle
+möglichen zukünftigen Bildschirme angepasst ist.
+*/
+@media(max-width:568px){
+    .optionen{
+        width: 94%;
+        margin-left: 3%;
+        margin-right: 3%;
+        margin-bottom: 6%;
+    }
+}
+
+/* Horizontale ausrichtung für Handys ist nicht unterstützt und müsste genau hier
+mit einer Meidaquery (@media(...)) eingefügt werden. Da dies aber unverhältnismässig wenig
+genutzt werden würde, lasse ich bewusst die Unterstützung für dieses Bildschirmformat aus. */

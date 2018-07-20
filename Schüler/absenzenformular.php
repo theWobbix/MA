@@ -1,10 +1,21 @@
+<?php
+include_once "../php/alert.php";
+session_start();
+
+//Leitet den User zur Login-Seite, wenn er nicht angemeldet ist.
+if(!isset($_SESSION["IDPerson"])){
+   header("Location: ../index.php");
+}
+
+?>
+
 <!DOCTYPE html>
 
 <html>
 
 <head>
     <title>MA</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/main.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="css/absenzenformular.css" />
     <script src="JS/absenzenformular.js"></script>   
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,6 +29,12 @@
 <body>
     
 <header class="navbar" id="navbar">
+
+    <div id="eingeloggt_als">
+        <?php
+            echo "Eingeloggt als: ", $_SESSION['IDPerson'];
+        ?>
+    </div>
 
     <span class="open-slide" id="open-slide">
         <a href="#" onclick="openSideMenu()">
@@ -33,7 +50,7 @@
         <a href="#" class="btn-close" onclick="closeSideMenu()">&times;</a>
         <a href="#" id="active">Eintragen</a>
         <a href="#">Absenzen</a>
-        <a href="#">Optionen</a>
+        <a href="optionen.php">Optionen</a>
         <a href="#">Feedback</a>
     </div>
 
@@ -74,13 +91,16 @@
         </div>
 
         <!-- Begründung -->
-        <div class="inputfield">
-            <label>Begründung</label>
-            <textarea id="begruendung" cols="30" rows="1"></textarea>
+        <div class="inputfield">            
+            <div id="begruendungLabel">
+                <label>Begründung</label>
+                <label id="characterlimit">0/100</label>
+            </div>     
+            <textarea id="begruendung" cols="30" rows="1" maxlength="100" onkeyup="UpdateCharacterLimit()"></textarea>
         </div>
 
         <!-- Datum -->
-        <div class="inputfield" >
+        <div class="inputfield">
             <label>Datum</label>
             <input type="date" id="date">
         </div>
@@ -103,9 +123,17 @@
         document.getElementById("side-menu").style.width = "0px";
         //document.getElementById("main").style.marginLeft = "0px";
     }
+
+    /*
+    Der herauskommentierte Code schiebt den rest der Website beim öffnen des
+    Sidenavs nach rechts. Dadurch sieht es dann so aus als ob das Sidenav den
+    Rest der Website nach rechts schieben würde.
+    */
 </script>
 
-<footer><div>Hannes Eybl<br>2018</div></footer>
+<footer>
+    <div>Hannes Eybl<br>2018</div>
+</footer>
 
 </body>
 

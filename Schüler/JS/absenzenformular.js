@@ -1,3 +1,4 @@
+//Code für AddRow() von: http://techstream.org/Web-Development/PHP/Dynamic-Form-Processing-with-PHP
 function addRow(){
     var table = document.getElementById("fachTable");
 
@@ -16,6 +17,8 @@ function addRow(){
     }
 }
 
-//Code von: http://techstream.org/Web-Development/PHP/Dynamic-Form-Processing-with-PHP
-
-
+//Aktualisiert die Anzeige für die momentane Anzahl von Zeichen in der Textarea
+function UpdateCharacterLimit(){
+    var currentlenght = document.getElementById("begruendung").value.length;
+    document.getElementById("characterlimit").innerText = currentlenght + "/100";
+}
