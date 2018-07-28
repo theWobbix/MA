@@ -11,7 +11,7 @@ html {
 }
 
 header{
-    background: rgb(185, 241, 80);
+    background: rgb(126, 241, 80);
 
     overflow: hidden;
 
@@ -61,18 +61,20 @@ header a:hover{
 .side-nav{
     height: 100%;
     width: 0;
+
     position: fixed;
-    z-index: 1;
     top: 0;
     left: 0;
 
+    z-index: 999;
+
     background-color: rgb(54, 255, 205);
-    box-shadow: 1px 5px 7px 1px rgba(24, 24, 24, 0.767);
 
     overflow-x: hidden;
+
     padding-top: 0px;
 
-    transition: 0.5s;
+    transition: 0.4s;
 }
 
 .btn-close{
@@ -94,11 +96,45 @@ header a:hover{
 main{
     background: rgb(155, 80, 241);
 
+    height: auto;
+    min-height: 84%;
+
     /* Dispaly propertys */
     display: flex;
     flex-direction: column;
 
+    position: relative;
+
     transition: 0.5s;
+}
+
+main .messageBox{
+    position: fixed;
+    bottom: -50px;
+
+    width: 94%;
+    height: auto;
+
+    margin-bottom: 10px;
+    margin-left: 3%;
+    margin-right: 3%;
+
+    text-align: center;
+
+    background: rgb(116, 245, 105);
+
+    box-shadow: 2px 5px 10px 1px rgba(24, 24, 24, 0.767);
+    
+    border-style: solid;
+    border-radius: 5px;
+    border-color: rgb(108, 228, 97);
+    border-width: 1px;
+
+    transition: 0.5s;
+}
+
+main.messageText{
+    height: auto;
 }
 
 footer{
@@ -128,6 +164,11 @@ footer div{
 @media(min-width:568px){
     .open-slide{display:none}
     .btn-close{display:none}
-    .side-nav{width:250px;margin-top:80px;}
+    .side-nav{width:250px;margin-top:80px;box-shadow: 1px 5px 7px 1px rgba(24, 24, 24, 0.767);}
     .btn-close{font-size: 35px;}
+    main .messageBox{
+        width: 360px;
+        margin-left: 260px;
+        margin-right: auto;
+    }
 }

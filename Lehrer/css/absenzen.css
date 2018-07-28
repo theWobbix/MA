@@ -1,0 +1,161 @@
+main{
+    display: flex;
+    flex-direction: row;
+}
+
+.absenzen{
+    margin-right: 10px;;    
+    margin-left: 300px;
+    margin-top: 2%;
+    margin-bottom: 3%;
+
+    width: 360px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdownArrowLabel{
+    position: relative;
+}
+
+i{
+    border-style: solid;
+    border-width: 0;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+
+    width: 15px;
+    height: 15px;
+
+    display: inline-block;
+
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+
+    z-index: 1;
+    
+    transition: 0.2s;
+}
+
+.arrowRight{
+    transform: rotate(-45deg);
+}
+
+.arrowDown{
+    transform: rotate(45deg);
+}
+
+.btn_dropdown{
+    height: 53px;
+    width: 100%;
+
+    font-size: 30px;
+
+    background: rgb(155, 80, 241);
+
+    border-left: 0;
+    border-right: 0;
+    border-top: 1px;
+    border-bottom: 1px;
+    border-style: solid;
+    border-color: black;
+
+    position: relative;
+ 
+    transition: 0.5s;
+}
+
+.btn_dropdown:hover{
+    background: rgb(160, 89, 241);
+}
+
+.klasse_daten{
+    display: flex;
+    flex-direction: column;
+
+    max-height: 0;
+    overflow: hidden;
+
+    transition: 0.4s;
+}
+
+.data{
+    display: flex;
+    flex-direction: row;
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+   
+    border-width: 0px 0px 1px 0px;
+    border-style: solid;
+    border-color: rgb(85, 85, 85);
+}
+
+.personBtn{
+    height: 41px;
+    width: 100%;
+
+    font-size: 25px;
+
+    border: 0;
+
+    background-color: rgb(155, 80, 241);
+
+    transition: 0.3s;
+}
+
+.personBtn:hover{
+    background: rgb(160, 89, 241);    
+}
+
+.absenzenTableContainer{
+    margin-right: auto;
+    margin-left: 30px;;
+    margin-top: 2%;
+    margin-bottom: 3%;
+
+    width: auto;
+}
+
+.absenzenTable{
+    border-collapse: collapse;
+    border: 1px solid rgb(131, 67, 204);
+}
+
+.absenzenTable th{
+    border-width: 1px ;
+    border-style: solid;
+    border-color: rgb(131, 67, 204);
+    
+    background-color: rgb(140, 72, 218);
+
+    padding-left: 5px;
+    padding-right: 5px;
+
+    font-weight: normal;
+}
+
+.absenzenTable td{
+    border-width: 1px ;
+    border-style: solid;
+    border-color: rgb(131, 67, 204);
+
+    background-color: rgb(143, 78, 218);
+
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+/*  Die Absenzentabelle ist nur auf grossen Bildschirmen sichtbar,
+    da Tabellen auf Handys unübersichtlich und umständlich bedienbar sind.*/
+    @media(max-width:568px){
+        .absenzen{
+            display: none;
+        }
+        .absenzenTableContainer{
+            display: none;
+        }
+    }
+    

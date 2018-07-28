@@ -35,13 +35,6 @@
             <input type="password" id="PW" name="passwort" placeholder="Passwort">
         </div>
 
-        <!-- Angemeldet bleiben -->
-        <div id="loginCookie">
-            <input type="checkbox" value="0" id="loginCookieBtn" name="loginCookie">
-            <label for="loginCookieBtn" id="loginCookieBtnVisible"></label> <!-- Dieses Label ersetzt den unsichtbaren Checkbutton, da es im gegensatz zum Checkbutton gestyled werden kann -->
-            <label for="loginCookieBtn">Angemeldet bleiben</label>
-        </div>
-
         <!-- Anmeldungs-Button -->
         <input type="submit" value="Anmelden" id="anmelden" name="submit">
 
@@ -50,8 +43,8 @@
 <?php
 
 if(isset($_POST["submit"])){
-    $username = $_POST["username"];
-    $password = $_POST["passwort"];
+    $username = mysqli_real_escape_string($connection, $_POST["username"]);
+    $password = mysqli_real_escape_string($connection, $_POST["passwort"]);
 
 
     $username = explode(" ", $username);
@@ -75,12 +68,9 @@ if(isset($_POST["submit"])){
         if($data["pw"] == md5($password)){
             #Alles in diesem if-block wird nur ausgeführt, wenn pw und username korrekt sind.   
             
-            if(isset($_POST["loginCookie"])){
-                #TODO: Create cookie
-            }
-
             #Speichert anmeldungsdaten
             $_SESSION["IDPerson"] = $data["IDPerson"];
+            $_SESSION["StatusPerson"] = "Schüler";
 
             header("Location: Schüler/absenzenformular.php");
         }
@@ -95,16 +85,12 @@ if(isset($_POST["submit"])){
             if($data["pw"] == md5($password)){
                 #Alles in diesem if-block wird nur ausgeführt, wenn pw und username korrekt sind.
 
-
-                if(isset($_POST["loginCookie"])){
-                    #TODO: Create cookie
-                }
-
                 #Speichert anmeldungsdaten
                 $_SESSION["IDPerson"] = $data["IDPerson"];
+                $_SESSION["StatusPerson"] = "Lehrer";
                 
                 #TODO: User zu Homepage weiterleiten mit:
-                #header("Location: Lehrer/Index.html");
+                header("Location: Lehrer/AbsenzEintragen.php");
             }
         }
     }

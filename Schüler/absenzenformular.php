@@ -1,10 +1,14 @@
 <?php
 include_once "../php/alert.php";
+include_once "../php/db_connection.php";
 session_start();
 
 //Leitet den User zur Login-Seite, wenn er nicht angemeldet ist.
 if(!isset($_SESSION["IDPerson"])){
    header("Location: ../index.php");
+}
+elseif($_SESSION["StatusPerson"] != "Schüler"){
+    header("Location: ../Lehrer/AbsenzEintragen.php");
 }
 
 ?>
@@ -18,6 +22,7 @@ if(!isset($_SESSION["IDPerson"])){
     <link rel="stylesheet" type="text/css" media="screen" href="../css/main.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="css/absenzenformular.css" />
     <script src="JS/absenzenformular.js"></script>   
+    <script src="../JS/SideMenu.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
 </head>
@@ -49,16 +54,15 @@ if(!isset($_SESSION["IDPerson"])){
     <div id="side-menu" class="side-nav">
         <a href="#" class="btn-close" onclick="closeSideMenu()">&times;</a>
         <a href="#" id="active">Eintragen</a>
-        <a href="#">Absenzen</a>
+        <a href="absenzen.php">Absenzen</a>
         <a href="optionen.php">Optionen</a>
-        <a href="#">Feedback</a>
     </div>
 
 </header>
 
 <main id="main">
 
-<div class="absenzenformular">
+<form class="absenzenformular" method="POST">
     <!-- Fächer-Input -->
     <div class="faecher-input">
         <!-- Dieses Table enthält alle "Fächer"-Eingabefelder -->
@@ -68,12 +72,54 @@ if(!isset($_SESSION["IDPerson"])){
             <!-- inputfield -->
             <div class="inputfield" id="fach">
                 <label>Fächer</label>
-                <input list="fächer" name="fach">
+                <input list="fächer" name="fach[]">
                 <!-- Alle auswählbaren Fächer -->
                 <datalist id="fächer">
-                    <option value="Deutsch">
-                    <option value="Physik">
-                    <option value="Sport">
+                    <?php
+                        $IDPerson = $_SESSION["IDPerson"];
+                        $faecher_full = array();
+                        $faecher_kurz = array();  
+
+                        $sql = "SELECT * FROM anmeldungen WHERE IDPerson='$IDPerson';";
+                                 
+                        $result = mysqli_query($connection, $sql);
+                        echo mysqli_error($connection);
+
+                        while($row = mysqli_fetch_assoc($result)){
+
+                            $anlassnummer = $row["Anlassnummer"];
+                            $fach_kurz = explode("-", $anlassnummer);
+                            //Der erste if-block sammelt die Abkürzungen der Fächer in einem Array
+                            if(strpos($anlassnummer, "EF")){
+                                $faecher_kurz[] = "EF_".$fach_kurz[2];
+                            }
+                            elseif(strpos($anlassnummer, "SF")){
+                                $faecher_kurz[] = "SF_".$fach_kurz[2];
+                            }
+                            else{
+                                $faecher_kurz[] = $fach_kurz[2];
+                            }
+
+    
+                            $anlassbezeichnung = $row["Anlassbezeichnung"];
+                            $fach_full = explode("-", $anlassbezeichnung);
+                            //Der zweite if-block sammelt die vollen Namen der Fächer in einem Array
+                            if(strpos($anlassbezeichnung, "EF")){
+                                $faecher_full[] = "EF ".$fach_full[2];
+                                $fach_full = "EF ".$fach_full[2];
+                            }
+                            elseif(strpos($anlassbezeichnung, "SF")){
+                                $faecher_full[] = "SF ".$fach_full[2];
+                                $fach_full = "SF ".$fach_full[2];
+                            }
+                            else{
+                                $faecher_full[] = $fach_full[2];
+                                $fach_full = $fach_full[2];
+                            }
+                            
+                            echo "<option value='$fach_full'>";
+                        }
+                    ?>
                 </datalist>
             </div>
             </td>
@@ -87,7 +133,7 @@ if(!isset($_SESSION["IDPerson"])){
         <!-- Anzahl lektionen-->
         <div class="inputfield">
             <label>Anzahl Lektionen</label>
-            <input type="text" id="lektionenanzahl">
+            <input type="text" id="lektionenanzahl" name="anzahlLektionen">
         </div>
 
         <!-- Begründung -->
@@ -96,40 +142,62 @@ if(!isset($_SESSION["IDPerson"])){
                 <label>Begründung</label>
                 <label id="characterlimit">0/100</label>
             </div>     
-            <textarea id="begruendung" cols="30" rows="1" maxlength="100" onkeyup="UpdateCharacterLimit()"></textarea>
+            <textarea id="begruendung" name="begruendung" cols="30" rows="1" maxlength="100" onkeyup="UpdateCharacterLimit()"></textarea>
         </div>
 
         <!-- Datum -->
         <div class="inputfield">
             <label>Datum</label>
-            <input type="date" id="date">
+            <input type="date" id="date" name="datum">
         </div>
 
         <!-- Absenden -->
-        <input type="button" value="Absenden" id="absenden">
+        <input type="submit" value="Absenden" id="absenden" name="absenden">
 
     </div>      
+</form>
+
+<div class="messageBox" id="messageBox">
+    <label id="messageText">Test Message</label>
 </div>
 
 </main>
 
-<script>
-    function openSideMenu(){
-        document.getElementById("side-menu").style.width = "250px";
-        //document.getElementById("main").style.marginLeft = "250px";
+<?php
+
+if(isset($_POST["absenden"])){
+    $IDPerson = $_SESSION["IDPerson"];
+
+    //Beim Fach muss keine Sicherheit für eine MySQL-Injection eingebaut werden, da die Werte in diesen Inputfeldern
+    //sowieso nicht direkt in der DB eingetragen werden.
+    $faecher_data = $_POST["fach"];
+    $faecher = "";
+
+    foreach($faecher_data as $fach){
+        $faecher .= $faecher_kurz[array_search($fach, $faecher_full)].";";
     }
 
-    function closeSideMenu(){
-        document.getElementById("side-menu").style.width = "0px";
-        //document.getElementById("main").style.marginLeft = "0px";
-    }
+    $anzahlLektionen = mysqli_real_escape_string($connection, $_POST["anzahlLektionen"]);
+    $begründung = mysqli_real_escape_string($connection, $_POST["begruendung"]);
+    $date = mysqli_real_escape_string($connection, $_POST["datum"]);
 
-    /*
-    Der herauskommentierte Code schiebt den rest der Website beim öffnen des
-    Sidenavs nach rechts. Dadurch sieht es dann so aus als ob das Sidenav den
-    Rest der Website nach rechts schieben würde.
-    */
-</script>
+    $sql = "SELECT * FROM absenzen WHERE IDPerson='$IDPerson' AND DatumAbsenz='$date';";
+    $result = mysqli_query($connection, $sql);
+
+    if(mysqli_num_rows($result)){
+        //Result > 0, Absenz wurde bereits von Lehrer eingetragen.
+        $sql = "UPDATE absenzen SET AnzahlLektionen='$anzahlLektionen', Begruendung='$begründung', Faecher='$faecher' WHERE IDPerson='$IDPerson' AND DatumAbsenz='$date';";
+        mysqli_query($connection, $sql);
+    }
+    else{
+        //Result = 0, Absenz wird zum ersten Mal eingetragen
+        $sql = "INSERT INTO ma.absenzen(`gueltig`, `IDPerson`, `DatumAbsenz`, `DatumEintrag`, `AnzahlLektionen`, `Begruendung`, `Faecher`, `FaecherGesamt`) VALUES (DEFAULT, $IDPerson,'$date',DEFAULT,'$anzahlLektionen','$begründung','$faecher',null);";
+        mysqli_query($connection, $sql);
+    }
+    messageBox("Absenz Eingetragen");
+}
+
+?>
 
 <footer>
     <div>Hannes Eybl<br>2018</div>

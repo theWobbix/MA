@@ -94,7 +94,7 @@ i{
     display: flex;
     flex-direction: column;
     
-    height: 0px;
+    height: 0;
     overflow: hidden;
     background: rgb(149, 77, 231);
 

@@ -1,0 +1,190 @@
+.melden{
+    margin-right: auto;    
+    margin-left: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+
+    width: 360px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdownArrowLabel{
+    position: relative;
+}
+
+i{
+    border-style: solid;
+    border-width: 0;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+
+    width: 15px;
+    height: 15px;
+
+    display: inline-block;
+
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+
+    z-index: 1;
+    
+    transition: 0.2s;
+}
+
+.arrowRight{
+    transform: rotate(-45deg);
+}
+
+.arrowDown{
+    transform: rotate(45deg);
+}
+
+.btn_dropdown{
+    height: 53px;
+    width: 100%;
+
+    font-size: 30px;
+
+    background: rgb(155, 80, 241);
+
+    border-left: 0;
+    border-right: 0;
+    border-top: 1px;
+    border-bottom: 1px;
+    border-style: solid;
+    border-color: black;
+
+    position: relative;
+ 
+    transition: 0.5s;
+}
+
+.btn_dropdown:hover{
+    background: rgb(160, 89, 241);
+}
+
+.klasse_daten{
+    display: flex;
+    flex-direction: column;
+
+    max-height: 0;
+    overflow: hidden;
+
+    transition: 0.4s;
+}
+
+.data{
+    display: flex;
+    flex-direction: row;
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+   
+    border-width: 0px 0px 1px 0px;
+    border-style: solid;
+    border-color: rgb(85, 85, 85);
+}
+
+/* #loginCookie = Checkbox "Angemeldet bleiben" */
+.absenzToggle{
+    display: flex;
+    flex-direction: row;
+
+    margin-bottom: 25px;
+
+    transform: translateX(-13px);
+}
+
+/* Tatsächliche Checkbox unsichtbar, da nicht stylebar */
+.absenzToggleBtn{
+    opacity: 0;
+    padding: 0;
+    margin: 0;
+}
+
+/* #loginCookieBtnVisible = ein Label, welches also Checkbox gestyled ist und Klickbar ist */
+.absenzToggleBtnVisible{
+    cursor: pointer;
+
+    position: relative;
+
+    width: 25px;
+    height: 25px;
+
+    margin-right: 10px;
+}
+
+/* #loginCookieBtnVisible::before = Die Box ansich */
+.absenzToggleBtnVisible::before{
+    content: "";
+    display: inline-block;
+
+    position: absolute;
+
+    width: 25px;
+    height: 25px;
+
+    background: rgb(140, 72, 218);
+
+    border: 1px solid rgb(123, 63, 190);
+}
+
+/* #loginCookieBtnVisible::after = Das häkchen, erst durch #loginCookieBtn:checked + :after sichtbar gemacht */
+.absenzToggleBtnVisible::after{
+    opacity: 0;
+    content: "";
+    display: inline-block;
+
+    position: absolute;
+    left: 5px;
+    top: 6px;
+
+    height: 8px;
+    width: 15px;
+
+    border-left: 3px solid;
+    border-bottom: 3px solid;
+    border-color: rgb(62, 11, 119);
+    transform: rotate(-45deg);
+
+    transition: 0.3s;
+}
+
+.absenzToggleBtn:hover + :after{
+    opacity: 0.1;
+}
+
+.absenzToggleBtn:focus + :before{
+    border: 2px solid rgb(123, 63, 190);
+    border-radius: 2px; 
+}
+
+.absenzToggleBtn:checked + :after{
+    opacity: 1;
+}
+
+.btn_big{
+    height: 53px;
+    width: 100%;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    font-size: 30px;
+
+    background: rgb(98, 157, 247);
+
+    border-width: 0;
+
+    box-shadow: 1px 4px 5px 1px rgba(24,24,24,0.5);
+
+    transition: 0.5s;
+}
+
+.btn_big:hover{
+    background: rgb(111, 167, 250); 
+    box-shadow: 2px 5px 6px 2px rgba(24,24,24,0.4); 
+}

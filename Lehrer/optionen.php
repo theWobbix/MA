@@ -7,9 +7,10 @@ session_start();
 if(!isset($_SESSION["IDPerson"])){
    header("Location: ../index.php");
 }
-elseif($_SESSION["StatusPerson"] != "Schüler"){
-    header("Location: ../Lehrer/AbsenzEintragen.php");
+elseif($_SESSION["StatusPerson"] != "Lehrer"){
+    header("Location: ../Schüler/absenzenformular.php");
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +52,7 @@ elseif($_SESSION["StatusPerson"] != "Schüler"){
 
     <div id="side-menu" class="side-nav">
         <a href="#" class="btn-close" onclick="closeSideMenu()">&times;</a>
-        <a href="absenzenformular.php" >Eintragen</a>
+        <a href="absenzEintragen.php" >Melden</a>
         <a href="absenzen.php">Absenzen</a>
         <a href="#" id="active">Optionen</a>
     </div>
@@ -64,7 +65,7 @@ elseif($_SESSION["StatusPerson"] != "Schüler"){
 
     <!-- Passwort  -->
     <div class="option" id="opt_passwort">
-        <label class="opt_titel">Passwort</label>
+        <label class="opt_titel">Passwort </label>
 
         <label for='btn_open' class='btn_open_arrow'>
             <i class='arrowRight' id='arrow'></i>
@@ -115,7 +116,7 @@ elseif($_SESSION["StatusPerson"] != "Schüler"){
         var element = document.getElementById("form_passwort_ändern");
         var element_arrow = document.getElementById("arrow");
 
-        if(element_arrow.className == "arrowRight"){
+        if(element.style.height == "0px"){
             element.style.height = "360px";
             element_arrow.className = "arrowDown";
 
@@ -139,6 +140,7 @@ elseif($_SESSION["StatusPerson"] != "Schüler"){
             setTimeout(() => {
                 element.style.overflow = "hidden"
             }, 351);
+
         }
     }
 </script>
@@ -154,7 +156,7 @@ if(isset($_POST["pw_submit"])){
     $IDPerson = $_SESSION["IDPerson"];
 
     //Def SQL
-    $sql = "SELECT pw FROM sus WHERE IDPerson='$IDPerson';";
+    $sql = "SELECT pw FROM lehrpersonen WHERE IDPerson='$IDPerson';";
 
     $result = mysqli_query($connection, $sql);
     $data = mysqli_fetch_assoc($result);
@@ -164,7 +166,7 @@ if(isset($_POST["pw_submit"])){
         //Vor dem einspeichern PW verschlüsseln
         $pw_new = md5($pw_new);
 
-        $sql = "UPDATE sus SET pw='$pw_new' WHERE IDPerson='$IDPerson';";
+        $sql = "UPDATE lehrpersonen SET pw='$pw_new' WHERE IDPerson='$IDPerson';";
 
         mysqli_query($connection, $sql);
 
