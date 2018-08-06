@@ -35,7 +35,6 @@ header a{
     padding-right: 100px;
 
     width: 110px;
-
     /*
     padding-left + padding-right + width = 250px (breite der navbar)
     bzw. 40px + 100px + 110px
@@ -45,6 +44,9 @@ header a{
     font-size: 25px;
 
     transition: 0.5s;
+
+    /* Link eigenschaften deaktivieren, link zu button machen */
+    cursor: default;
 }
 
 header a:hover{
@@ -71,7 +73,7 @@ header a:hover{
 .btn-close{
     font-size: 36px;
     padding-bottom: 19px;
-    padding-top: 19px;
+    padding-top: 19px; 
 }
 
 /* #active für die seite die grad offen ist */
@@ -103,12 +105,13 @@ footer{
     height: 80px;
 
     display: flex;
-
 }
 
 footer div{
     margin: auto;
     text-align: center;
+
+    font-size: 20px;
 }
 
 /*  Eigenes CSS für den Knopf der die Sidebar öffnet
@@ -119,6 +122,7 @@ footer div{
     width: 30px;
 }
 
+/* Handy Bildschirm anpassen*/
 @media(min-width:568px){
     .open-slide{display:none}
     .btn-close{display:none}

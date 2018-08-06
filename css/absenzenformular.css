@@ -1,15 +1,14 @@
 .absenzenformular{
-    margin-right: auto;
-    margin-left: auto;
+    margin-right: 10%;
+    margin-left: 10%;
     margin-top: 2%;
-    margin-bottom: 2%;
+    margin-bottom: 5%;
 
-    width: 360px;
-
+    /* Für einen smoothen übergang zwischen Bildschirmen -> gleiches verhältnis */
+    width: 80%;
 
     /* 
-    DO TO: Breite des Formulars via Mediaquery für Handys anpassen
-    */
+    DO TO: Breite des Formulars via Mediaquery für Handys anpassen*/
        
     display: flex;
     flex-direction: column;
@@ -72,7 +71,7 @@
     float: right;
 
     background: rgb(211, 0, 0);
-    box-shadow: 2px 5px 10px 1px rgba(24,24,24,0.5);
+    box-shadow: 2px 5px 6px 1px rgba(24,24,24,0.5);
 
     border-width: 0;
     
@@ -85,7 +84,7 @@
 }
 
 #plusbutton:hover{
-    box-shadow: 3px 6px 11px 2px rgba(24,24,24,0.4);
+    box-shadow: 3px 6px 8px 2px rgba(24,24,24,0.4);
 }
 
 #date{
@@ -132,5 +131,24 @@
     box-shadow: 2px 5px 6px 2px rgba(24,24,24,0.4); 
 }
 
+/* Handy Bildschirm anpassen*/
+@media(min-width:568px){
+    .absenzenformular{    
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: 2%;
+        margin-bottom: 2%;
+        width: 400px;
+    }
+}
 
+/* Bei sehr kleinen Bilschirmen etwas schönere Formatierung
+   bzw. Seitenverhältnisse (und erhöhte Nutzbarkeit der Website) */ 
+@media(max-width: 400px){
+    .absenzenformular{
+        margin-left: 5%;
+        margin-right: 5%;
 
+        width: 90%;  
+    }
+}

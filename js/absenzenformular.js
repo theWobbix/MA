@@ -1,10 +1,11 @@
+//Fügt ein neues Inputfeld zum Eingabeformular hinzu
 function addRow(){
     var table = document.getElementById("fachTable");
 
     var zeilenanzahl = table.rows.length;
     
     if(zeilenanzahl >= 10){
-        alert("Maximal 10 Fächer");
+        alert("Maximal 10 Fächer");     //Der User soll nicht unenedlich Fächer angeben können
     }
     else{
         var zeile = table.insertRow(zeilenanzahl);

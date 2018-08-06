@@ -15,7 +15,7 @@
 <header class="navbar">
 
     <span class="open-slide" id="open-slide">
-        <a href="#" onclick="openSideMenu()">
+        <a href="#" onclick="openSideMenu()" id="btn-open">
             <svg width="30"height="30">
                 <path d="M0,5 30,5" stroke="#fff" stroke-width="5"/>
                 <path d="M0,14 30,14" stroke="#fff" stroke-width="5"/>
@@ -25,11 +25,13 @@
     </span>
 
     <div id="side-menu" class="side-nav">
+
         <a href="#" class="btn-close" onclick="closeSideMenu()">&times;</a>
         <a href="#" id="active">Eintragen</a>
         <a href="#">Absenzen</a>
         <a href="#">Optionen</a>
         <a href="#">Feedback</a>
+        
     </div>
 
 </header>
